@@ -17,30 +17,27 @@ def parse_request(data):
 	domain = '.'.join(fqdn[-2:])
 	city = '.'.join(fqdn[:-2])
 	if wttr_in(domain):
-
+	
+		# declare
 		ID=request.header.id
 		RQ=request.q
 		QN=request.q.qname
 		QT=request.q.qtype
 
+		# generate message
 		MSG=get_weather(city)
 		if MSG is None:
 			MSG="No city found, try: baku,moscow,nackhichevan"
+		
+		# generate dns reponse
 		reply=DNSRecord(DNSHeader(id=ID,qr=1,aa=1,ra=1),q=RQ)
 		reply.add_answer(RR(QN,QT,rdata=TXT(MSG)))
 		return reply.pack()
+
 	else:
 		return False
 
-"""	
-def reply_request(query):
-	if query:
-		reply=DNSRecord(DNSHeader(id=query[0],qr=1,aa=1,ra=1),q=query[1])
-		reply.add_answer(RR(query[2],query[3],rdata=TXT("test")))
-		
-		return reply.pack()
-"""
-
+# check 
 def wttr_in(domain):
 	return domain == 'wttr.in'
 
@@ -55,8 +52,8 @@ def get_weather(city):
 																l.atmosphere['humidity'])
 		return str(weather_report)
 
+# run forever
 while 1:
 	data, addr = sock.recvfrom(512)
-	#sock.sendto(reply_request(parse_request(data)), addr)
 	sock.sendto(parse_request(data), addr)
 	
