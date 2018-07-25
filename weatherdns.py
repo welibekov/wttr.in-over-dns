@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+#
+
+"""
+
+Don't forget to install following modules and prepare virtual env:
+$ virtualenv python3 venv
+$ source venv/bin/activate
+$ pip3 install dnslib weather
+
+"""
 
 import socket
 from dnslib import DNSRecord,DNSHeader,RR,TXT,QTYPE,A,CNAME
