@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import socket
-import binascii
-from dnslib import DNSRecord,DNSHeader,RR,TXT
+from dnslib import DNSRecord,DNSHeader,RR,TXT,QTYPE,A,CNAME
 from weather import Weather,Unit
 
+# ip,port declaration
 ip = "127.0.0.1"
 port = 15353
 
@@ -31,7 +31,10 @@ def parse_request(data):
 		
 		# generate dns reponse
 		reply=DNSRecord(DNSHeader(id=ID,qr=1,aa=1,ra=1),q=RQ)
-		reply.add_answer(RR(QN,QT,rdata=TXT(MSG)))
+		if QT != QTYPE.TXT:
+			reply.add_answer(RR(QN,QT,rdata=A("1.1.1.1")))
+
+		reply.add_ar(RR(QN,QT,rdata=TXT(MSG)))
 		return reply.pack()
 
 	else:
