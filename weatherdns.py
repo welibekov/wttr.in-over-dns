@@ -87,8 +87,11 @@ def parse_request(data):
 def get_weather(city,record="TXT"):
     if record == "A":
         w=Weather(unit=Unit.CELSIUS).lookup_by_location(city)
-        r="{0}\n{1}\n{2} C\n{3} mph\n{4} mm".format(w.title,w.condition.text,w.condition.temp,w.wind.speed,w.atmosphere['pressure'])
+        r="{0}\n{1}\n{2} C\n{3} mph\n{4} mm".format(w.title,w.condition.text,
+                                                    w.condition.temp,
+                                                    w.wind.speed,w.atmosphere['pressure'])
         l=[str(ord(i)) for i in r]
+        # add symbol if not devided by 4
         while len(l)%4>0:
             l.append('32')
         it=[iter(l)]*4
@@ -97,10 +100,8 @@ def get_weather(city,record="TXT"):
     r = requests.get("http://wttr.in/{}?qp0".format(city)).content
     return base64.b64encode(r)
     
-    
 # run forever
 while 1:
     data, addr = sock.recvfrom(512)
-    #parse_request(data)
     sock.sendto(parse_request(data), addr)
 	
