@@ -9,6 +9,7 @@ To get report through TXT record:
 *git @NS_IPADDRESS nurember.example.com TXT +short | tr -d '"' | base64 --decode*
 
 Here is simple zonefile config:  
+```json
 {  
     "example.com": {  
         "ns":  
@@ -24,4 +25,4 @@ Here is simple zonefile config:
             }  
       }  
 }  
-
+```
