@@ -21,7 +21,7 @@ Here is simple zonefile config:
                 "ttl": "600",  
                 "record": "ns1.example.com",  
                 "ip": "1.1.1.1"  
-         }  
-    }  
+            }  
+      }  
 }  
 
