@@ -18,13 +18,16 @@ from weather import Unit, Weather
 
 # parsing arguments
 __parser__ = argparse.ArgumentParser(description="weather through dns")
-__parser__.add_argument('-s', '--host', default="0.0.0.0 53".split(),
-                        dest='host', help='HOST PORT', nargs=2)
+__parser__.add_argument('-s', '--host', default="0.0.0.0",
+                        dest='host', help='HOST/IP')
+__parser__.add_argument('-p', '--port', default=53, type=int,dest='port',
+                        help='PORT, currently udp only')
 __parser__.add_argument('-f', '--zonefile', dest='zonefile', required=True)
 __args__ = __parser__.parse_args()
 
 # ip,port declaration
-__ip__, __port__ = __args__.host
+__ip__ = __args__.host
+__port__ = __args__.port
 
 __sock__ = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 __sock__.bind((__ip__, int(__port__)))
