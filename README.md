@@ -10,19 +10,19 @@ To get report through TXT record:
 
 Here is simple zonefile config:  
 ```json
-{  
-    "example.com": {  
-        "ns":  
-            {  
-                "record": "ns1.example.com",  
-                "ttl": "600"  
-            },  
-        "a":  
-            {  
-                "ttl": "600",  
-                "record": "ns1.example.com",  
-                "ip": "1.1.1.1"  
-            }  
-      }  
-}  
+{
+    "example.com": {
+        "ns":
+            {
+                "record": "ns1.example.com",
+                "ttl": "600"
+            },
+        "a":
+            {
+                "ttl": "600",
+                "record": "ns1.example.com",
+                "ip": "1.1.1.1"
+            }
+      }
+}
 ```
