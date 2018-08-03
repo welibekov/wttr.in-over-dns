@@ -24,6 +24,9 @@ dig @NS_IPADDRESS nuremberg.example.com TXT +short | tr -d '"' | base64 -D
 ```bash
 # Linux  
 dig @NS_IPADDRESS nuremberg.example.com SRV +short | awk '{"echo "$4" | base64 -i --decode"|getline $4;printf "%s\nTemp %s C\nWind %s-%s km/h\n",$4,$1,$2,$3}'
+
+# MacOS X
+dig @NS_IPADDRESS nuremberg.example.com SRV +short | awk '{"echo "$4" | tr -d '.' | base64 -D"|getline $4;printf "%s\nTemp %s C\nWind %s-%s km/h\n",$4,$1,$2,$3}'
 ```
 
 Here is simple zonefile config:  
