@@ -52,6 +52,6 @@ Here is simple zonefile config:
 ```bash
 -p PORT == bind port, default is 53
 -s HOST == bind host, default is 0.0.0.0
--f FILE == pass to zone file, mandatory option
+-f FILE == path to zone file, mandatory option
 -h HELP == call help
 ```
