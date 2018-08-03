@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-#
 
 """
-Don't forget to install following modules and prepare virtual env:
-$ virtualenv python3 venv
-$ source venv/bin/activate
-$ pip3 install dnslib weather
-
+Get your weather report through DNS.
+This is lightweight implementation of DNS server,
+that allows you to get weather through:
+A, TXT, SRV records.
+Some usefull options:
+-p PORT, bind to specified UDP port
+-s HOST, bind to specified IP
+-f FILE, path to zonefile, mandatory option
+-h HELP, to get help
 """
 
 import json
@@ -112,7 +115,6 @@ def get_weather(city, record=16):
             lst.append('32')
         itr = [iter(lst)]*4
         return zip(*itr)
-       
     elif record == 33:
         wth = Weather(unit=Unit.CELSIUS).lookup_by_location(city)
         if not wth:
