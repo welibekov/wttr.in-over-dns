@@ -97,7 +97,7 @@ def parse_request(data):
     #    return None
 
 def get_weather(city, record=16):
-    """Returing weather report"""
+    """Returning weather report"""
     if not city or city == parse_config(2)[0].split('.')[-3]:
         return parse_config(1)[0]
 
