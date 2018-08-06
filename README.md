@@ -55,3 +55,8 @@ Here is simple zonefile config:
 -f FILE == path to zone file, mandatory option
 -h HELP == call help
 ```
+
+## Acknowledgments
+Thanks to the wttr.in creator Igor Chubin (@chubin),  
+for sharing the everything-over-dns idea with me,  
+and inspiring me to create this service.
